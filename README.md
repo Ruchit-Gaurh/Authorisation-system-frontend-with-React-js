@@ -1,71 +1,39 @@
-# Getting Started with Create React App
+# Authorisation System Frontend With Reactjs
+This is the frontend of an authorization system developed using **React.js**, designed for user registration and login functionalities. This project communicates with a backend server built with **Django** and **PostgreSQL** to authenticate users and handle sessions.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+- **User Registration**: New users can register by entering their details.
+- **User Login**: Existing users can log in with their email and password.
+- **Token-based Authentication**: Secure communication with the backend via tokens.
+- **Responsive Design**: Works seamlessly on all screen sizes.
 
-In the project directory, you can run:
+### Axios
 
-### `npm start`
+Axios is used to handle HTTP requests to the backend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### User Login
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For user login, this function sends a POST request to the `/login` endpoint. The backend responds with a token used for authenticated requests.
 
-### `npm test`
+```javascript
+const loginUser = async (loginData) => {
+    try {
+        const response = await axios.post('/login', loginData);
+        const { token } = response.data;
+        localStorage.setItem('authToken', token);
+        console.log('Login successful');
+    } catch (error) {
+        console.error('Error logging in:', error.response.data);
+    }
+};
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Folder Structure
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Authorisation-system-frontend-with-React-js
+```plaintext
+src/
+├── endpoints/    # API
+├── routes/       # Application pages (Login, Register, Dashboard)
+├── App.js         # Main App component
+└── index.js       # Entry point
